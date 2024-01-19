@@ -6,7 +6,7 @@
     <title>Jeu de dés</title>
 </head>
 <body>
-    <h1>NEW GAME</h1>
+    <h1 id="newGame">NEW GAME</h1>
 
     <div id="player1">
         <h2>PLAYER 1</h2>
@@ -17,13 +17,19 @@
     <div id="player2">
         <h2>PLAYER 2</h2>
         <p>Score: <span id="score2">0</span></p>
-        <p>Current: <span id="current1">0</span></p>
+        <p>Current: <span id="current2">0</span></p>
     </div>
 
     <div id="dice">
         <button onclick="rollDice()">Lancer les dés</button>
         <button onclick="hold()">Valider les points</button>
     </div>
+
+    <div id="result"></div>
+
+    <div id="currentPlayer">1</div>
+
+    <div id="winner"></div>
 
     <script src="game.js"></script>
     
