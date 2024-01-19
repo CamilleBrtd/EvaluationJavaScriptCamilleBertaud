@@ -21,10 +21,15 @@ function rollDice() {
     console.log(currentPlayer)
 }
 
-//Fonctions de remise à zéro du score
+//Fonctions de remise à zéro 
 function resetScore() {
     score = 0;
     document.getElementById('score'+ currentPlayer).innerText = score;
+}
+
+function resetResult() {
+    result = 0
+    document.getElementById('result').innerText = "";
 }
 
 function resetCurrent1() {
@@ -35,6 +40,12 @@ function resetCurrent1() {
 function resetCurrent2() {
     current2 = 0;
     document.getElementById('current2').innerText = current2;
+}
+
+function restCurrentPlayer() {
+    currentPlayer = "1";
+    document.getElementById('currentPlayer').innerText = currentPlayer;
+
 }
 
 // Fonction pour changer de joueur
@@ -67,17 +78,43 @@ function hold() {
     winner();
 }
 
+// Activer et désactiver les button de jeu
+
+function disableButtons() {
+    var rollButton = document.getElementById('dice').querySelector('[onclick="rollDice()"]');
+    var holdButton = document.getElementById('dice').querySelector('[onclick="hold()"]');
+    rollButton.disabled = true;
+    holdButton.disabled = true;
+}
+
+function enableButtons() {
+    var rollButton = document.getElementById('dice').querySelector('[onclick="rollDice()"]');
+    var holdButton = document.getElementById('dice').querySelector('[onclick="hold()"]');
+    rollButton.disabled = false;
+    holdButton.disabled = false;
+}
+
 // Détermination du gagnant
+
 function winner() {
-    if (current1 >= 100) {
+    if (current1 >= 10) {
         document.getElementById('winner').innerText = "Bravo joueur 1 tu as gagné avec" + current1 + "points";
+        disableButtons();
         resetCurrent1();
         resetCurrent2();
         resetScore();
-    } else if (current2 >= 100) {
+    } else if (current2 >= 10) {
         document.getElementById('winner').innerText = "Bravo joueur 2 tu as gagné avec" + current2 + "points";
+        disableButtons();
         resetCurrent1();
         resetCurrent2();
         resetScore();
     } 
+}
+
+function newGame() {
+    restCurrentPlayer();
+    enableButtons();
+    resetResult();
+    document.getElementById('winner').innerText = "";
 }
